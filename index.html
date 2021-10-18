@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <title>MasterMind</title>
 </head>
-<body>
+<!--onload="start()" permet de lancer le chrono automatiquement au chargement de la page-->
+<body onload="start()"> 
     <header>
         <h1>MasterMind</h1>
         <nav>
@@ -16,7 +17,7 @@
         </nav>
     </header>
     <main>
-        <div class="lineOne">
+        <div>
             <input class="btnOne" type="button" id="btnColor1" value="">
             <input class="btnTwo" type="button" id="btnColor2" value="">
             <input class="btnTree" type="button" id="btnColor3" value="">
@@ -24,7 +25,23 @@
             <input class="btnValid" type="button" id="btnValider" value="OK">
             <input class="btnReplay" type="button" id="btnRejouer" value="Rejouer" display="none">
         </div>
-        <div id="resultat"></div>
+        <div id="affichage"></div>
+        <fieldset class="chrono">
+            <legend>Chronomètre</legend>
+            <div>
+                <button id="btnStart">Start</button>
+                <button id="btnPause">Pause</button>
+                <button id="btnStop">Stop</button>
+                <div class="timer">
+                    <span>0 h</span> :
+                    <span>0 min</span> :
+                    <span>0 s</span> :
+                    <span>0 ms</span>
+                </div>
+            </div>
+        </fieldset>
+        </form>
+        <div id="resultat"></div> 
     </main>
     <script src="principal.js"></script>
 </body>

@@ -3,6 +3,7 @@
     margin: 0;
     text-align: center;
     background-color: #2e2c2c;
+    font-family: 'Segoe UI', sans-serif;
 }
 header {
     background-color: black;
@@ -25,9 +26,9 @@ a {
     font-size: 20px;
 }
 main {
+    margin: 2%;
     width: auto;
     height: 60vh;
-    margin: 5%;
     font-size: 18px;
     color: blanchedalmond;
 }
@@ -96,6 +97,23 @@ section {
     text-align: justify;
     font-size: 18px;
     border-radius: 5%;
-    font-family: 'Segoe UI', sans-serif;
     color: blanchedalmond;
+}
+.chrono {
+    border: 1px #000 solid;
+    padding: 1%;
+    margin: 0% 5%;
+    width: 15%;
+    font-size: 15px;
+}
+button {
+    margin: 2%;
+    margin-bottom: 10%;
+    padding: 5%;
+    color: blanchedalmond;
+}
+button:hover,
+button:focus {
+    color: #000;
+    background-color: blanchedalmond;
 }

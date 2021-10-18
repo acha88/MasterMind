@@ -2,7 +2,7 @@
 var tColor = ["","Green","Blue", "Red", "Yellow" ];
 // pour stocker les  solutions - 
 var tSolution = [0,0,0,0,0];
-
+var Solution = "";
 // compteur nombre essai
 var iNbEssai = 0;
 
@@ -19,6 +19,21 @@ for (let index = 1; index < 5; index++) {
     else {
         tSolution[index] = iNombre;
     }
+    switch (tSolution[index]) {
+        case 1:
+            Solution += "Vert "; 
+            break;
+        case 2:
+            Solution += "Bleu ";
+            break;
+        case 3:
+            Solution += "Rouge ";
+            break;
+        case 4:
+            Solution += "Jaune ";
+        default:
+            break;
+    };
 }
 
 // stocker la proposition
@@ -44,6 +59,7 @@ function action_au_click1() {
     if (document.getElementById("btnColor1").tag == 1) {
         document.getElementById("btnColor1").style.backgroundColor = "#0B3FCE";
         document.getElementById("btnColor1").tag++;
+        
     } else if (document.getElementById("btnColor1").tag == 2) {
         document.getElementById("btnColor1").style.backgroundColor = "#F80022";
         document.getElementById("btnColor1").tag++;
@@ -152,6 +168,7 @@ for (let i = 1; i < 5; i++) {
         document.getElementById("resultat").innerHTML += "Vous avez "+ iNbBP + " bien placé(s)" + " et " + iNbMP + " mal placé(s) </br>";
         if (iNbEssai == 10) {
             alert("Vous avez perdu !");
+            document.getElementById("affichage").innerText = "La solution était : " + Solution;
             document.getElementById("btnValider").style.display="none";
             document.getElementById("btnRejouer").style.display="block";
         }
@@ -173,6 +190,67 @@ btnColor4.addEventListener("click", action_au_click4, false);
 
 var btnValider = document.getElementById('btnValider');
 btnValider.addEventListener("click", action_au_click_valider, false);
-
 var btnRejouer = document.getElementById('btnRejouer');
 btnRejouer.addEventListener("click", action_au_click_rejouer, false);
+
+// chronomètre
+var sp = document.getElementsByTagName("span");
+var btnStart=document.getElementById("btnStart");
+var btnStop=document.getElementById("btnStop");
+var t;
+var ms=0,s=0,min=0,h=0;
+   
+/*La fonction "start" démarre un appel répétitive de la fonction update_chrono par une cadence de 100 milliseconde en utilisant setInterval et désactive le bouton "start" */
+
+function start(){
+   t =setInterval(update_chrono,100);
+   btnStart.disabled=true;
+}
+/*La fonction update_chrono incrémente le nombre de millisecondes par 1 <==> 1*cadence = 100 */
+function update_chrono(){
+    ms+=1;
+    /*si ms=10 <==> ms*cadence = 1000ms <==> 1s alors on incrémente le nombre de secondes*/
+       if(ms==10){
+        ms=1;
+        s+=1;
+       }
+       /*on teste si s=60 pour incrémenter le nombre de minute*/
+       if(s==60){
+        s=0;
+        min+=1;
+       }
+       if(min==60){
+        min=0;
+        h+=1;
+       }
+/*afficher les nouvelle valeurs*/
+sp[0].innerHTML=h+" h";
+sp[1].innerHTML=min+" min";
+sp[2].innerHTML=s+" s";
+sp[3].innerHTML=ms+" ms";
+}
+/*on arrête le "timer" par clearInterval ,on réactive le bouton start */
+function stop(){
+    clearInterval(t);
+    btnStart.disabled=false;
+}
+/*dans cette fonction on arrête le "timer" ,on réactive le bouton "start" et on initialise les variables à zéro */
+function reset(){
+    clearInterval(t);
+    btnStart.disabled=false;
+    ms=0,s=0,min=0,h=0;
+    
+/*on accède aux différents span par leurs indice*/
+sp[0].innerHTML=h+" h";
+sp[1].innerHTML=min+" min";
+sp[2].innerHTML=s+" s";
+sp[3].innerHTML=ms+" ms";
+}
+
+
+var btnStart = document.getElementById('btnStart');
+btnStart.addEventListener("click", start, false);
+var btnPause = document.getElementById('btnPause');
+btnPause.addEventListener("click", stop, false);
+var btnStop = document.getElementById("btnStop");
+btnStop.addEventListener("click", reset, false);
